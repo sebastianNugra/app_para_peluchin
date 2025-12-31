@@ -43,3 +43,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Editor
+.vscode/
+
+# Firebase
+android/app/google-services.json
