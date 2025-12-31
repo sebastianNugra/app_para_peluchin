@@ -20,7 +20,7 @@ class MyUserEntity {
     };
   }
 
-  static MyUserEntity fromDocument( Map<String, dynamic> doc){
+  static MyUserEntity fromDocument(Map<String, dynamic> doc){
     return MyUserEntity(
       userId: doc['userId'], 
       email: doc['email'], 

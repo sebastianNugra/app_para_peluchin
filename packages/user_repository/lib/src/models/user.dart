@@ -25,7 +25,7 @@ class MyUser {
       userId: userId,
       email: email,
       name: name,
-      hasActiveCart: false,
+      hasActiveCart: hasActiveCart,
     );
   }
 
