@@ -2,19 +2,15 @@ part of 'sign_in_bloc.dart';
 
 sealed class SignInState extends Equatable {
   const SignInState();
-  
+
   @override
   List<Object> get props => [];
 }
 
-class SignInRequired extends SignInEvent {
-  final String email;
-  final String password;
+final class SignInInitial extends SignInState {}
 
-  const SignInRequired(this.email, this.password);
+final class SignInFailure extends SignInState {}
 
-  @override
-  List<Object> get props => [email, password];
-}
+final class SignInLoading extends SignInState {}
 
-class SignOutRequired extends SignInEvent {}
+final class SignInSuccess extends SignInState {}
