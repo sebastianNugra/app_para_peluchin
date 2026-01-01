@@ -46,6 +46,6 @@ app.*.map.json
 
 # Editor
 .vscode/
-
+    
 # Firebase
 android/app/google-services.json
