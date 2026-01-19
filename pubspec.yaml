@@ -12,21 +12,39 @@ dependencies:
     sdk: flutter
 
   firebase_core: ^4.3.0
-
+  google_fonts: ^7.0.2
   bloc: ^9.1.0
   flutter_bloc: ^9.1.1
   equatable: ^2.0.7
   cupertino_icons: ^1.0.8
+  font_awesome_icon_class: ^0.0.6
 
   user_repository:
     path: packages/user_repository
+  font_awesome_flutter: ^10.12.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^5.0.0
+  flutter_native_splash: ^2.4.7
+
+flutter_native_splash:
+  android: true
+  ios: true
+
+  color: "#F8F1E1"
+  image: assets/images/logo_prin.png
+
+  android_12:
+    color: "#F8F1E1"
+    image: assets/images/logo_prin.png
+    branding: assets/images/branding_prin.png
 
 flutter:
-
   uses-material-design: true
+
+
+  assets:
+    - assets/images/pelu_img.png

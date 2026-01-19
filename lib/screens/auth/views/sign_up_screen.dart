@@ -3,6 +3,9 @@ import 'package:user_repository/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../components/my_textfield.dart';
+import '../blocs/sign_up_bloc/sign_up_bloc.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -158,24 +161,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         "⚈  1 uppercase",
                         style: TextStyle(
                           color: containsUpperCase
-                            ? Colors.green
-                            : Theme.of(context).colorScheme.onBackground
+                            ? const Color.fromARGB(255, 27, 128, 7)
+                            : Theme.of(context).colorScheme.onSurface
                         ),
                       ),
                       Text(
                         "⚈  1 lowercase",
                         style: TextStyle(
                           color: containsLowerCase
-                            ? Colors.green
-                            : Theme.of(context).colorScheme.onBackground
+                            ? const Color.fromARGB(255, 27, 128, 7)
+                            : Theme.of(context).colorScheme.onSurface
                         ),
                       ),
                       Text(
                         "⚈  1 number",
                         style: TextStyle(
                           color: containsNumber
-                            ? Colors.green
-                            : Theme.of(context).colorScheme.onBackground
+                            ? const Color.fromARGB(255, 27, 128, 7)
+                            : Theme.of(context).colorScheme.onSurface
                         ),
                       ),
                     ],
@@ -187,16 +190,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         "⚈  1 special character",
                         style: TextStyle(
                           color: containsSpecialChar
-                            ? Colors.green
-                            : Theme.of(context).colorScheme.onBackground
+                            ? const Color.fromARGB(255, 27, 128, 7)
+                            : Theme.of(context).colorScheme.onSurface
                         ),
                       ),
                       Text(
                         "⚈  8 minimum character",
                         style: TextStyle(
                           color: contains8Length
-                            ? Colors.green
-                            : Theme.of(context).colorScheme.onBackground
+                            ? const Color.fromARGB(255, 27, 128, 7)
+                            : Theme.of(context).colorScheme.onSurface
                         ),
                       ),
                     ],
@@ -245,13 +248,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       style: TextButton.styleFrom(
                         elevation: 3.0,
-                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        backgroundColor: const Color.fromARGB(255, 42, 179, 189),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(60)
                         )
                       ),
                       child: const Padding(
+                        
                         padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
                         child: Text(
                           'Sign Up',

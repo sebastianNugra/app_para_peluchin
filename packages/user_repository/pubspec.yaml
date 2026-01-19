@@ -1,24 +1,41 @@
+# Nombre del paquete (librería)
 name: user_repository
+
+# Descripción breve del propósito del paquete
 description: The Repo that handles users
+
+# Indica que NO se publicará en pub.dev
 publish_to: 'none'
+
+# Versión del paquete
 version: 1.0.0+1
 
+# Versión mínima del SDK de Dart requerida
 environment:
   sdk: ^3.9.2
 
 dependencies:
+  # Dependencia base de Flutter
   flutter:
     sdk: flutter
 
+  # Autenticación de usuarios (login, registro)
   firebase_auth: ^6.1.3
+
+  # Base de datos en la nube (usuarios)
   cloud_firestore: ^6.1.1
+
+  # Manejo avanzado de Streams
   rxdart: ^0.28.0
 
-
 dev_dependencies:
+  # Herramientas para testing
   flutter_test:
     sdk: flutter
+
+  # Reglas de buenas prácticas y estilo
   flutter_lints: ^5.0.0
 
+# Configuración específica de Flutter
 flutter:
   uses-material-design: true
