@@ -1,8 +1,9 @@
+import 'package:app_peluche/blocs/authentication_bloc/authentication_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'welcome_screens.dart';
 
 /// Pantalla inicial de login / bienvenida
 class LogPage extends StatelessWidget {
@@ -98,10 +99,7 @@ class LogPage extends StatelessWidget {
 
                 // Navega a la pantalla de Sign In / Sign Up
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const WelcomeScreen()),
-                  );
+                  context.read<AuthenticationBloc>().add(const GoToWelcome());
                 },
               ),
 

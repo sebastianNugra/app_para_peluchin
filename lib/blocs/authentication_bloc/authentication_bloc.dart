@@ -35,8 +35,12 @@ class AuthenticationBloc
         emit(AuthenticationState.authenticated(event.user!));
       } else {
         // Usuario vacío => no hay sesión activa
-        emit(const AuthenticationState.unauthenticated());
+        emit(const AuthenticationState.initial());
       }
+    });
+
+    on<GoToWelcome>((event, emit) {
+      emit(const AuthenticationState.unauthenticated());
     });
   }
 

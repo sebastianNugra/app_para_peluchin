@@ -4,7 +4,7 @@ part of 'authentication_bloc.dart';
 // authenticated    -> usuario logueado correctamente
 // unauthenticated  -> usuario no logueado
 // unknown          -> estado inicial (splash / verificación)
-enum AuthenticationStatus { authenticated, unauthenticated, unknown }
+enum AuthenticationStatus { initial, authenticated, unauthenticated, unknown }
 
 // Estado principal del AuthenticationBloc
 // Maneja el estado global de sesión de la aplicación
@@ -22,9 +22,12 @@ class AuthenticationState extends Equatable {
   // Usuario autenticado (null si no hay sesión)
   final MyUser? user;
 
+  const AuthenticationState.unknown() : this._();
+  
   // Estado inicial de la app
   // Se usa normalmente al arrancar (splash / bootstrap)
-  const AuthenticationState.unknown() : this._();
+  const AuthenticationState.initial()
+    : this._(status: AuthenticationStatus.initial);
 
   // Estado cuando el usuario está autenticado
   // Guarda el usuario en memoria global

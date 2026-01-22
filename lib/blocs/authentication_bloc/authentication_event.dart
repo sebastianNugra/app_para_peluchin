@@ -21,3 +21,8 @@ class AuthenticationUserChanged extends AuthenticationEvent {
   // Se emite cada vez que el repositorio detecta un cambio de sesión
   const AuthenticationUserChanged(this.user);
 }
+
+class GoToWelcome extends AuthenticationEvent {
+  const GoToWelcome();
+}
+

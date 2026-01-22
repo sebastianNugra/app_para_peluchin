@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:app_peluche/screens/auth/views/log_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/authentication_bloc/authentication_bloc.dart';
@@ -61,12 +62,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 ),
               ),
-              // Efecto borroso de fondo
               BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 100.0),
                 child: Container(),
               ),
-              // Contenido principal centrado
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
@@ -132,7 +131,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 ),
               ),
-              // Botón para volver atrás
               Positioned(
                 top: MediaQuery.of(context).padding.top + 10,
                 left: 6,
@@ -140,7 +138,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   icon: const Icon(Icons.arrow_back),
                   color: Theme.of(context).colorScheme.onSurface,
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LogPage()),
+                    );
                   },
                 ),
               ),

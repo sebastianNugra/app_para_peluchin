@@ -92,7 +92,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   }
                   return null;
                 }
-              )
+              ),
             ),
 
             const SizedBox(height: 10),
