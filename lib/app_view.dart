@@ -1,5 +1,5 @@
 // Pantalla de login
-import 'package:app_peluche/screens/auth/views/log_page.dart';
+import 'package:app_peluche/screens/auth/views/welcome_screens.dart';
 
 // Widgets base de Flutter
 import 'package:flutter/material.dart';
@@ -11,6 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'blocs/authentication_bloc/authentication_bloc.dart';
 
 // Pantalla principal
+import 'screens/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'screens/auth/views/log_page.dart';
 import 'screens/home/views/home_screen.dart';
 
 // Vista principal de la aplicación
@@ -38,12 +40,23 @@ class MyAppView extends StatelessWidget {
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           // Usuario autenticado → Home
-          if (state.status == AuthenticationStatus.authenticated) {
-            return const HomeScreen();
+          switch (state.status) {
+            case AuthenticationStatus.initial:
+              return const LogPage();
 
-            // Usuario no autenticado → Login
-          } else {
-            return const LogPage();
+            case AuthenticationStatus.unauthenticated:
+              return const WelcomeScreen();
+
+            case AuthenticationStatus.authenticated:
+              return BlocProvider(
+                create: (context) => SignInBloc(
+                  context.read<AuthenticationBloc>().userRepository,
+                ),
+                child: const HomeScreen(),
+              );
+
+            case AuthenticationStatus.unknown:
+              return const SizedBox(); // o loader técnico
           }
         },
       ),
