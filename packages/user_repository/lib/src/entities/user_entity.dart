@@ -4,14 +4,12 @@ class MyUserEntity {
   String userId;
   String email;
   String name;
-  bool hasActiveCart;
 
   // Constructor obligatorio para crear la entidad
   MyUserEntity({
     required this.userId,
     required this.email,
     required this.name,
-    required this.hasActiveCart,
   });
 
   // Convierte la entidad a un Map (formato compatible con BD / Firestore)
@@ -20,7 +18,6 @@ class MyUserEntity {
       'userId': userId,
       'email': email,
       'name': name,
-      'hasActiveCart': hasActiveCart,
     };
   }
 
@@ -30,7 +27,6 @@ class MyUserEntity {
       userId: doc['userId'],
       email: doc['email'],
       name: doc['name'],
-      hasActiveCart: doc['hasActiveCart'],
     );
   }
 }
