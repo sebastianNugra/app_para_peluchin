@@ -1,4 +1,5 @@
 class Student {
+  String id;
   String firstName;
   String lastName;
   int age;
@@ -7,6 +8,7 @@ class Student {
   int errores;
 
   Student({
+    required this.id,
     required this.firstName,
     required this.lastName,
     required this.age,
@@ -16,9 +18,10 @@ class Student {
 }
 
 class Course {
+  final String id;
   String name;
   List<Student> students;
 
-  Course({required this.name, List<Student>? students})
+  Course({required this.name, List<Student>? students, required this.id})
     : this.students = students ?? [];
 }
