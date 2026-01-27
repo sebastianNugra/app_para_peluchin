@@ -6,12 +6,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseCategoryRepo implements CategoryRepo {
   final categoryCollection = FirebaseFirestore.instance.collection('categories');
 
-  Future<List<Category>> getCategories() async{
+  Future<List<Categorys>> getCategories() async{
     try {
       return await categoryCollection
       .get()
       .then((value) => value.docs.map((e) => 
-        Category.fromEntity((CategoryEntity.fromDocument(e.data())))
+        Categorys.fromEntity((CategoryEntity.fromDocument(e.data())))
       ).toList());
     } catch (e) {
       log(e.toString());

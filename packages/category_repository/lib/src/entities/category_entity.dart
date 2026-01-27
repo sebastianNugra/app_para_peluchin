@@ -1,5 +1,4 @@
 import 'package:category_repository/src/entities/miniatures_entity.dart';
-
 import '../models/miniatures.dart';
 
 class CategoryEntity {
@@ -8,6 +7,7 @@ class CategoryEntity {
   String name;
   String description;
   Miniatures miniatures;
+  String courseId; 
 
   CategoryEntity({
     required this.categoryId,
@@ -15,6 +15,7 @@ class CategoryEntity {
     required this.name,
     required this.description,
     required this.miniatures,
+    required this.courseId,
   });
 
   Map<String, Object?> toDocument() {
@@ -24,6 +25,7 @@ class CategoryEntity {
       'name': name,
       'description': description,
       'miniatures': miniatures.toentity().toDocument(),
+      'courseId': courseId,
     };
   }
 
@@ -34,6 +36,7 @@ class CategoryEntity {
       name: doc['name'],
       description: doc['description'],
       miniatures: Miniatures.fromEntity(MiniaturesEntity.fromDocument(doc['miniatures'])),
+      courseId: doc['courseId'] ?? '',
     );
   }
 }
