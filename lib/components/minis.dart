@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class MyMacroWidget extends StatelessWidget {
+class MyMiniWidget extends StatelessWidget {
   final String title;
   final int value;
   final IconData icon;
 
-  const MyMacroWidget({
+  const MyMiniWidget({
     required this.title,
     required this.value,
     required this.icon,
