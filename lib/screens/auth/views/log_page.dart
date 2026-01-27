@@ -51,6 +51,8 @@ class LogPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
+                  
+                  color: const Color.fromARGB(255, 46, 46, 46),
                 ),
               ),
 
@@ -71,6 +73,7 @@ class LogPage extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
+                  color: const Color.fromARGB(255, 46, 46, 46),
                 ),
               ),
 

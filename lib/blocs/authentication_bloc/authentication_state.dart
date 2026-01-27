@@ -29,6 +29,16 @@ class AuthenticationState extends Equatable {
   const AuthenticationState.initial()
     : this._(status: AuthenticationStatus.initial);
 
+
+
+
+
+
+
+
+
+
+//nbnbn
   // Estado cuando el usuario está autenticado
   // Guarda el usuario en memoria global
   const AuthenticationState.authenticated(MyUser myUser)
