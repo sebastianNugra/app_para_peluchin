@@ -1,5 +1,6 @@
 import 'package:app_peluche/screens/home/views/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'models.dart';
 import 'student_screen.dart';
 
@@ -59,7 +60,10 @@ class _CourseListScreenState extends State<CourseListScreen> {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (_) => const HomeScreen()),
+              MaterialPageRoute(builder: (_) => MyHomePage(
+                  title: 'App Peluchín',
+           
+                ),),
             );
           },
         ),

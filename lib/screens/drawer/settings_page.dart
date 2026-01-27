@@ -1,45 +1,31 @@
+import 'package:app_peluche/screens/drawer/EditProfilePage.dart';
 import 'package:app_peluche/screens/home/views/home_screen.dart';
 import 'package:flutter/material.dart';
 
 /// PANTALLA DE SETTINGS
 /// Esta clase representa la pantalla que se abre
 /// cuando tocas "Settings" en el Drawer
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+class SettingsPage extends StatefulWidget {
+  final String nombreActual;
+  final Function(String, String?) onGuardar;
 
+  const SettingsPage({
+    super.key,
+    required this.nombreActual,
+    required this.onGuardar,
+  });
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Fondo de la pantalla
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 0,
-        centerTitle: true,
-
-        /// FLECHA ARRIBA A LA IZQUIERDA
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => const HomeScreen()),
-            );
-          },
-        ),
-
-        /// TEXTO CENTRADO
-        title: const Text(
-          'Settings',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
-        ),
-      ),
-
-      /// CONTENIDO
+      appBar: AppBar(title: const Text('Settings')),
       body: ListView(
         children: [
-          // ====== SECCIÓN GENERAL ======
           const Padding(
             padding: EdgeInsets.all(16),
             child: Text(
@@ -48,21 +34,32 @@ class SettingsPage extends StatelessWidget {
             ),
           ),
 
+          /// CONTENIDO
           ListTile(
             title: const Text('Edit Profile'),
             trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () async {
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const EditProfilePage()),
+              );
+
+              //  AQUÍ SÍ EXISTE widget
+              if (result != null) {
+                widget.onGuardar(result['nombre'], result['imagen']);
+              }
+            },
+          ),
+          // ====== SECCIÓN GENERAL ======
+          ListTile(
+            title: Text('Change Language'),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {},
           ),
 
           ListTile(
-            title: const Text('Change Language'),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {},
-          ),
-
-          ListTile(
-            title: const Text('Aspect'),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            title: Text('Aspect'),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {},
           ),
 
@@ -78,20 +75,20 @@ class SettingsPage extends StatelessWidget {
           ),
 
           ListTile(
-            title: const Text('Terms and conditions'),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            title: Text('Terms and conditions'),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {},
           ),
 
           ListTile(
-            title: const Text('Privacy policy'),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            title: Text('Privacy policy'),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {},
           ),
 
           ListTile(
-            title: const Text('Support'),
-            trailing: const Icon(Icons.arrow_forward_ios),
+            title: Text('Support'),
+            trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {},
           ),
         ],
