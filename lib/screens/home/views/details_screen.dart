@@ -1,10 +1,11 @@
-import 'package:app_peluche/components/macro.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:app_peluche/components/minis.dart';
+import 'package:category_repository/category_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
+  final Categorys category;
+  const DetailsScreen(this.category, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,9 @@ class DetailsScreen extends StatelessWidget {
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width - (40),
+              height:
+                  MediaQuery.of(context).size.width -
+                  (MediaQuery.of(context).size.width / 4),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),
@@ -29,7 +32,8 @@ class DetailsScreen extends StatelessWidget {
                   ),
                 ],
                 image: DecorationImage(
-                  image: AssetImage('assets/images/pelu_img.png'),
+                  image: NetworkImage(category.picture),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -56,8 +60,8 @@ class DetailsScreen extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            "Descripciones",
-                            style: TextStyle(
+                            category.name,
+                            style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -68,15 +72,15 @@ class DetailsScreen extends StatelessWidget {
                     SizedBox(height: 12),
                     Row(
                       children: [
-                        MyMacroWidget(
+                        MyMiniWidget(
                           title: "Competencia:",
-                          value: 1,
+                          value: category.miniatures.competence,
                           icon: FontAwesomeIcons.graduationCap,
                         ),
                         SizedBox(width: 10),
-                        MyMacroWidget(
+                        MyMiniWidget(
                           title: "Preguntas:",
-                          value: 3,
+                          value: category.miniatures.questions,
                           icon: FontAwesomeIcons.book,
                         ),
                       ],
@@ -89,16 +93,26 @@ class DetailsScreen extends StatelessWidget {
                         onPressed: () {},
                         style: TextButton.styleFrom(
                           elevation: 3.0,
-                          backgroundColor: const Color.fromARGB(255,7,76,133),
+                          backgroundColor: const Color.fromARGB(
+                            255,
+                            7,
+                            76,
+                            133,
+                          ),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(18),
                           ),
-                          textStyle: TextStyle(
-                            fontSize: 18
-                          )
+                          textStyle: TextStyle(fontSize: 18),
                         ),
-                        child: Text("Comenzar ahora"),
+                        child: Text(
+                          "Comenzar ahora",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                   ],
