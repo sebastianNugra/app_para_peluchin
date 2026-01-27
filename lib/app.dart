@@ -1,3 +1,6 @@
+import 'package:provider/provider.dart';
+import 'package:app_peluche/screens/home/views/ThemeProvider.dart';  // Ajusta la ruta a tu ThemeProvider
+
 // Vista principal de la app
 import 'package:app_peluche/app_view.dart';
 

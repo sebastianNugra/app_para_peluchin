@@ -1,3 +1,6 @@
+import 'package:app_peluche/screens/home/views/ThemeProvider.dart';
+
+import 'package:provider/provider.dart';
 // Widget raíz de la aplicación
 import 'package:app_peluche/app.dart';
 
@@ -27,5 +30,14 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
 
   // Inicia la app inyectando el repositorio Firebase
-  runApp(MyApp(FirebaseUserRepo()));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),  // Agrega tu ThemeProvider aquí
+        // Si tienes otros providers (ej. para BLoC o repositorios), agrégalos aquí
+        // Ejemplo: Provider(create: (_) => FirebaseUserRepo()), si lo necesitas como provider
+      ],
+      child: MyApp(FirebaseUserRepo()),
+    ),
+  );
 }

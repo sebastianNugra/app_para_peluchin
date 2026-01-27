@@ -1,11 +1,13 @@
 // Pantalla de login
 import 'package:app_peluche/screens/auth/views/welcome_screens.dart';
+import 'package:app_peluche/screens/home/views/ThemeProvider.dart';
 
 // Widgets base de Flutter
 import 'package:flutter/material.dart';
 
 // BLoC para manejar estados
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // BLoC de autenticación
 import 'blocs/authentication_bloc/authentication_bloc.dart';
@@ -21,6 +23,8 @@ class MyAppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = context.watch<ThemeProvider>();
+
     // Configuración global de la app
     return MaterialApp(
       title: 'App para conectar al peluche',
@@ -33,12 +37,35 @@ class MyAppView extends StatelessWidget {
           onSurface: Colors.black,
           primary: Colors.blue,
           onPrimary: Colors.white,
+          onBackground: Colors.black,
+        ),
+        textTheme: ThemeData.light().textTheme.apply(
+          bodyColor: Colors.black,
+          displayColor: Colors.black,
         ),
       ),
+
+      // Tema oscuro global de colores
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: ColorScheme.dark(
+          surface: Colors.grey.shade900,
+          onSurface: Colors.white,
+          primary: Colors.blue,
+          onPrimary: Colors.white,
+          onBackground: Colors.white,
+        ),
+        textTheme: ThemeData.dark().textTheme.apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        ),
+      ),
+      themeMode: themeProvider.modoOscuro ? ThemeMode.dark : ThemeMode.light,
 
       // Decide qué pantalla mostrar según el estado de autenticación
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
+          print('AUTH STATUS = ${state.status}');
+
           // Usuario autenticado → Home
           switch (state.status) {
             case AuthenticationStatus.initial:
@@ -52,7 +79,7 @@ class MyAppView extends StatelessWidget {
                 create: (context) => SignInBloc(
                   context.read<AuthenticationBloc>().userRepository,
                 ),
-                child: const HomeScreen(),
+                child: MyHomePage(title: 'App Peluchín'),
               );
 
             case AuthenticationStatus.unknown:
