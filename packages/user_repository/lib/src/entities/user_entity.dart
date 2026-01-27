@@ -6,19 +6,11 @@ class MyUserEntity {
   String name;
 
   // Constructor obligatorio para crear la entidad
-  MyUserEntity({
-    required this.userId,
-    required this.email,
-    required this.name,
-  });
+  MyUserEntity({required this.userId, required this.email, required this.name});
 
   // Convierte la entidad a un Map (formato compatible con BD / Firestore)
   Map<String, Object?> toDocument() {
-    return {
-      'userId': userId,
-      'email': email,
-      'name': name,
-    };
+    return {'userId': userId, 'email': email, 'name': name};
   }
 
   // Crea la entidad a partir de un Map obtenido de la BD / Firestore
