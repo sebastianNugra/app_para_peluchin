@@ -1,5 +1,7 @@
 // Pantalla de login
 import 'package:app_peluche/screens/auth/views/welcome_screens.dart';
+import 'package:app_peluche/screens/home/blocs/get_categories_bloc/get_categories_bloc.dart';
+import 'package:category_repository/category_repository.dart';
 
 // Widgets base de Flutter
 import 'package:flutter/material.dart';
@@ -48,10 +50,19 @@ class MyAppView extends StatelessWidget {
               return const WelcomeScreen();
 
             case AuthenticationStatus.authenticated:
-              return BlocProvider(
-                create: (context) => SignInBloc(
-                  context.read<AuthenticationBloc>().userRepository,
-                ),
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (context) => SignInBloc(
+                      context.read<AuthenticationBloc>().userRepository,
+                    ),
+                  ),
+                  BlocProvider(
+                    create: (context) => GetCategoriesBloc(
+                      FirebaseCategoryRepo()
+                    )..add(GetCategories()),
+                  ),
+                ],
                 child: const HomeScreen(),
               );
 

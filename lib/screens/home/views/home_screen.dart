@@ -1,5 +1,8 @@
 import 'package:app_peluche/screens/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:app_peluche/screens/drawer/course_screen.dart';
+import 'package:app_peluche/screens/home/blocs/get_categories_bloc/get_categories_bloc.dart';
+import 'package:app_peluche/screens/home/views/details_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,7 +34,7 @@ class HomeScreen extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: colorScheme.surface,
+      backgroundColor: const Color.fromARGB(255, 255, 254, 249),
 
       /// DRAWER (MENÚ LATERAL)
       drawer: Drawer(
@@ -40,7 +43,9 @@ class HomeScreen extends StatelessWidget {
           children: [
             /// CABECERA
             DrawerHeader(
-              decoration: BoxDecoration(color: Colors.grey),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 197, 183, 112),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -137,14 +142,14 @@ class HomeScreen extends StatelessWidget {
 
       /// APPBAR
       appBar: AppBar(
-        backgroundColor: colorScheme.surface,
+        backgroundColor: const Color.fromARGB(255, 245, 245, 245),
         title: Row(
           children: [
             Image.asset('assets/images/pelu_img.png', scale: 10),
             const SizedBox(width: 8),
             const Text(
-              'Peluchin',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+              'Bienvenido',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
           ],
         ),
@@ -161,28 +166,178 @@ class HomeScreen extends StatelessWidget {
       /// CUERPO (GRID)
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 9 / 12,
-          ),
-          itemCount: 4,
-          itemBuilder: (context, int i) {
-            return Container(
-              decoration: BoxDecoration(
-                color: colorScheme.surface,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade400,
-                    blurRadius: 4,
-                    offset: const Offset(3, 3),
-                  ),
-                ],
-              ),
-            );
+        child: BlocBuilder<GetCategoriesBloc, GetCategoriesState>(
+          builder: (context, state) {
+            if (state is GetCategoriesSuccess) {
+              return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 9 / 12.6,
+                ),
+                itemCount: state.category.length,
+                itemBuilder: (context, int i) {
+                  return Material(
+                    elevation: 3,
+                    color: const Color.fromARGB(255, 245, 245, 245),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(20),
+                      onTap: () {
+                        //Aqui van los detalles
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) =>
+                                const DetailsScreen(),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
+                            child: AspectRatio(
+                              aspectRatio:
+                                  16 / 14, // MISMA proporción para todas
+                              child: Image.network(
+                                state.category[i].picture,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0,
+                            ),
+                            child: Row(
+                              children: [
+                                // Container(
+                                //   decoration: BoxDecoration(
+                                //     color: Colors.amber,
+                                //     borderRadius: BorderRadius.circular(30),
+                                //   ),
+                                //   child: const Padding(
+                                //     padding: EdgeInsets.symmetric(
+                                //       vertical: 4,
+                                //       horizontal: 8,
+                                //     ),
+                                //     child: Text(
+                                //       "BOTON UNO",
+                                //       style: TextStyle(
+                                //         color: Colors.white,
+                                //         fontWeight: FontWeight.bold,
+                                //         fontSize: 10,
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
+                                // SizedBox(width: 8,),
+                                // //segundo container
+                                // Container(
+                                //   decoration: BoxDecoration(
+                                //     color: const Color.fromARGB(255, 12, 122, 45),
+                                //     borderRadius: BorderRadius.circular(30),
+                                //   ),
+                                //   child: const Padding(
+                                //     padding: EdgeInsets.symmetric(
+                                //       vertical: 4,
+                                //       horizontal: 8,
+                                //     ),
+                                //     child: Text(
+                                //       "BOTON DOS",
+                                //       style: TextStyle(
+                                //         color: Colors.white,
+                                //         fontWeight: FontWeight.bold,
+                                //         fontSize: 10,
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 4, horizontal: 12.0
+                            ),
+                            child: Text(
+                              state.category[i].name,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              state.category[i].description,
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                          ),
+                          //boton get saterted
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 22.0,
+                              vertical: 4,
+                            ),
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: 35,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  // acción aquí
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color.fromARGB(
+                                    255,
+                                    7,
+                                    76,
+                                    133,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  padding: EdgeInsets.zero,
+                                ),
+                                child: const Text(
+                                  'Comenzar',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            } else if (state is GetCategoriesLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is GetCategoriesFailure) {
+              return Center(
+                child: Text(
+                  state.error,
+                  style: const TextStyle(color: Colors.red),
+                ),
+              );
+            }
+            return const Center(child: CircularProgressIndicator());
           },
         ),
       ),
