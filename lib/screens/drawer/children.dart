@@ -23,6 +23,7 @@ class DividerScreen extends StatelessWidget {
   }
 }
 
+// meco si lo lees
 class Dividers extends StatelessWidget {
   const Dividers({super.key});
 
