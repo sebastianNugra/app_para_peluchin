@@ -21,7 +21,7 @@ final class GetCategoriesFailure extends GetCategoriesState {
 final class GetCategoriesLoading extends GetCategoriesState {}
 
 final class GetCategoriesSuccess extends GetCategoriesState {
-  final List<Category> category;
+  final List<Categorys> category;
   const GetCategoriesSuccess(this.category);
 
   @override
