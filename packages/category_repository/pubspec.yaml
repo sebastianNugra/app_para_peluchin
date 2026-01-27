@@ -1,4 +1,4 @@
-name: app_pelu_repository
+name: category_repository
 description: IDK
 publish_to: 'none'
 version: 1.0.0+1
@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+  cloud_firestore: ^6.1.1
 
 
 dev_dependencies:
