@@ -1,4 +1,3 @@
-import 'package:app_peluche/screens/home/views/home_screen.dart';
 import 'package:flutter/material.dart';
 
 /// PANTALLA DE SETTINGS
@@ -14,25 +13,11 @@ class SettingsPage extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        centerTitle: true,
-
-        /// FLECHA ARRIBA A LA IZQUIERDA
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => const HomeScreen()),
-            );
-          },
-        ),
-
-        /// TEXTO CENTRADO
         title: const Text(
-          'Settings',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+          "Settings",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
       ),
 

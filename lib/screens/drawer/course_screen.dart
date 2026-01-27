@@ -1,4 +1,3 @@
-import 'package:app_peluche/screens/home/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // [cite: 4]
 import 'package:firebase_auth/firebase_auth.dart'; // [cite: 6]
@@ -68,21 +67,12 @@ class _CourseListScreenState extends State<CourseListScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, color: Colors.black, size: 20),
-          onPressed: () {
-            Navigator.pop(context);
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => const HomeScreen()),
-            );
-          },
-        ),
-        title: Text(
+        title: const Text(
           "Mis Cursos",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
       ),
+
       // CAMBIO PRINCIPAL: Usamos StreamBuilder para leer de Firebase
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore
