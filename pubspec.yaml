@@ -27,6 +27,9 @@ dependencies:
   category_repository:
     path: packages/category_repository
 
+  students_repository:
+    path: packages/students_repository
+
   font_awesome_flutter: ^10.12.0
 
 dev_dependencies:
