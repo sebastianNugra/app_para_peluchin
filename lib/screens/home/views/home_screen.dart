@@ -1,5 +1,6 @@
 import 'package:app_peluche/screens/auth/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:app_peluche/screens/drawer/course_screen.dart';
+import 'package:app_peluche/screens/game/game_page.dart';
 import 'package:app_peluche/screens/home/blocs/get_categories_bloc/get_categories_bloc.dart';
 import 'package:app_peluche/screens/home/views/details_screen.dart';
 import 'package:flutter/material.dart';
@@ -465,7 +466,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: 35,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        // acción aquí
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute<void>(
+                                            builder: (BuildContext context) =>
+                                                GamePage(
+                                                  category:
+                                                      categoriasAMostrar[i], // ← Pasa la categoría aquí
+                                                ),
+                                          ),
+                                        );
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: const Color.fromARGB(
@@ -510,45 +520,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   return const Center(child: CircularProgressIndicator());
                 },
-              ),
-            ),
-
-            /// BOTONES INFERIORES
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12.0),
-              child: Column(
-                children: [
-                  /// BOTÓN CONECTAR A PELUCHÍN
-                  SizedBox(
-                    width: 200,
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        // Acción Conectar a Peluchín
-                      },
-                      icon: const Icon(Icons.bluetooth),
-                      label: const Text(
-                        'Conectar a Peluchín',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(
-                          255,
-                          233,
-                          219,
-                          151,
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        foregroundColor: const Color.fromARGB(255, 27, 27, 27),
-                      ),
-                    ),
-                  ),
-                ],
               ),
             ),
           ],
